@@ -123,6 +123,10 @@ jobs:
       # download all artifacts
       - uses: actions/download-artifact@v2
 
+      # list current directory
+      - name: List directory structure
+        run: ls -R
+
       # note how we use the PyPI tokens
       - name: Upload to Azure PyPi (disabled)
         run: |
