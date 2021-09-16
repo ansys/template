@@ -10,7 +10,7 @@ Usage:
     platform linux -- Python 3.8.10, pytest-6.2.5, py-1.10.0, pluggy-1.0.0
     rootdir: /home/alex/ansys/source/template
     plugins: cov-2.12.1
-    collected 6 items                                                             
+    collected 6 items
 
     tests/test_library.py ......                                            [100%]
 
@@ -27,7 +27,7 @@ With coverage.
     platform linux -- Python 3.8.10, pytest-6.2.5, py-1.10.0, pluggy-1.0.0
     rootdir: /home/alex/ansys/source/template
     plugins: cov-2.12.1
-    collected 6 items                                                             
+    collected 6 items
 
     tests/test_library.py ......                                            [100%]
 
@@ -59,7 +59,6 @@ def my_complex():
 @pytest.fixture
 def py_complex():
     return 1 -2j
-
 
 
 @pytest.mark.parametrize('a', range(1, 3))

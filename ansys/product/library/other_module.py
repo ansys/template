@@ -225,7 +225,6 @@ class Complex:
         >>> my_num.abs
         """
         return (self._real**2 + self._imag**2)**0.5
-        
 
     def __repr__(self):
         """Be sure your class has a representational string"""
