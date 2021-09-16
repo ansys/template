@@ -111,7 +111,7 @@ jobs:
           retention-days: 7
 
   Release:
-    # if: contains(github.ref, 'refs/tags')
+    if: contains(github.ref, 'refs/tags')
     needs: [main, style, docs]
     runs-on: ubuntu-latest
     steps:
@@ -155,10 +155,10 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
 
-      # - name: Release
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     files: |
-      #       ./**/*.whl
-      #       ./**/*.zip
-      #       ./**/*.pdf
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./**/*.whl
+            ./**/*.zip
+            ./**/*.pdf
