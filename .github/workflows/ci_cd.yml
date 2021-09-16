@@ -67,7 +67,7 @@ jobs:
       - name: Upload wheel
         uses: actions/upload-artifact@v2
         with:
-          name: ansys-product-library
+          name: ansys-product-library-wheel
           path: dist/
           retention-days: 7
 
@@ -99,14 +99,14 @@ jobs:
       - name: Upload HTML Documentation
         uses: actions/upload-artifact@v2
         with:
-          name: Documentation
+          name: Documentation-html
           path: doc/build/html
           retention-days: 7
 
       - name: Upload PDF Documentation
         uses: actions/upload-artifact@v2
         with:
-          name: Documentation
+          name: Documentation-pdf
           path: doc/build/latex/*.pdf
           retention-days: 7
 
@@ -120,8 +120,25 @@ jobs:
         with:
           python-version: 3.9
 
-      # download all artifacts
       - uses: actions/download-artifact@v2
+        with:
+          name: ansys-product-library-wheel
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: Documentation-pdf
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: Documentation-html
+          path: ~/html
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4
+        with:
+          BRANCH: gh-pages
+          FOLDER: html
+          CLEAN: true
 
       # list current directory
       - name: List directory structure
@@ -143,4 +160,3 @@ jobs:
       #       ./**/*.whl
       #       ./**/*.zip
       #       ./**/*.pdf
-
