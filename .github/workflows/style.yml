@@ -1,0 +1,57 @@
+# check spelling, codestyle
+name: GitHub CI
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  style_check:
+    name: Style Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install style requirements
+        run: |
+          pip install -r requirements_style.txt --disable-pip-version-check
+
+      - name: Codespell
+        run: |
+          make codespell
+
+      - name: flake8
+        run: |
+          make flake8
+
+  main:
+    name: Build and Testing
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Create wheel
+        run: |
+          pip install wheel
+          python setup.py bdist_wheel
+
+      - name: Validate wheel
+        run: |
+          pip install twine
+          twine check dist/*
+
+      - name: Install library
+        run: pip install dist/*
+
+      - name: Unit testing
+        run: |
+          pip install -r requirements_test.py
+          cd tests  # so we're testing the install, not local
+          pytest -vx
