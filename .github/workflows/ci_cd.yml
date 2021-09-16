@@ -82,6 +82,9 @@ jobs:
         with:
           python-version: 3.8
 
+      - name: Install library
+        run: pip install .
+
       - name: Build HTML
         run: |
           pip install -r requirements_docs.txt
@@ -94,14 +97,14 @@ jobs:
           make -C doc latexpdf
 
       - name: Upload HTML Documentation
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v2
         with:
           name: Documentation
           path: doc/build/html
           retention-days: 7
 
       - name: Upload PDF Documentation
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v2
         with:
           name: Documentation
           path: doc/build/latex/*.pdf
@@ -109,7 +112,7 @@ jobs:
 
   Release:
     if: contains(github.ref, 'refs/tags')
-    needs: [main, style]
+    needs: [main, style, docs]
     runs-on: ubuntu-latest
     steps:
       - name: Set up Python
