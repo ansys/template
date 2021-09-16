@@ -124,9 +124,9 @@ jobs:
         with:
           name: ansys-product-library-wheel
 
-      - uses: actions/download-artifact@v2
-        with:
-          name: Documentation-pdf
+      # - uses: actions/download-artifact@v2
+      #   with:
+      #     name: Documentation-pdf
 
       - uses: actions/download-artifact@v2
         with:
