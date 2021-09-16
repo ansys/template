@@ -1,0 +1,37 @@
+﻿ansys.product.library.Complex
+=============================
+
+.. currentmodule:: ansys.product.library
+
+.. autoclass:: Complex
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      
+      Complex.abs
+      
+      
+      Complex.imag
+      
+      
+      Complex.real
+      
+   
+   

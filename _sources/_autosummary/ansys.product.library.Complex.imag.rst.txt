@@ -1,0 +1,6 @@
+imag
+====
+
+.. currentmodule:: ansys.product.library
+
+.. autoproperty:: Complex.imag

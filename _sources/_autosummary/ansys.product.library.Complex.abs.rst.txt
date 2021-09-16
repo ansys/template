@@ -1,0 +1,6 @@
+abs
+===
+
+.. currentmodule:: ansys.product.library
+
+.. autoproperty:: Complex.abs
