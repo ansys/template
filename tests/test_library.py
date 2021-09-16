@@ -58,7 +58,7 @@ def my_complex():
 
 @pytest.fixture
 def py_complex():
-    return 1 -2j
+    return 1 - 2j
 
 
 @pytest.mark.parametrize('a', range(1, 3))
