@@ -11,7 +11,7 @@ on:
       - main
 
 jobs:
-  style_check:
+  style:
     name: Style Check
     runs-on: ubuntu-latest
 
@@ -64,6 +64,13 @@ jobs:
           cd tests  # so we're testing the install, not local
           pytest -vx
 
+      - name: Upload wheel
+        uses: actions/upload-artifact@v2
+        with:
+          name: ansys-product-library
+          path: dist/
+          retention-days: 7
+
   docs:
     name: Build Documentation
     runs-on: ubuntu-latest
@@ -75,7 +82,57 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install req and build
+      - name: Build HTML
         run: |
           pip install -r requirements_docs.txt
           make -C doc html SPHINXOPTS="-W"
+
+      - name: Build PDF Documentation
+        run: |
+          sudo apt update
+          sudo apt-get install -y texlive-latex-extra latexmk
+          make -C doc latexpdf
+
+      - name: Upload HTML Documentation
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: Documentation
+          path: doc/build/html
+          retention-days: 7
+
+      - name: Upload PDF Documentation
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: Documentation
+          path: doc/build/latex/*.pdf
+          retention-days: 7
+
+  Release:
+    if: contains(github.ref, 'refs/tags')
+    needs: [main, style]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+
+      # download all artifacts
+      - uses: actions/download-artifact@v2
+
+      - name: Upload to Azure PyPi
+        run: |
+          pip install twine
+          twine upload --skip-existing ./**/*.whl
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./**/*.whl
+            ./**/*.zip
+            ./**/*.pdf
+
