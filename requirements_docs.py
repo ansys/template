@@ -1,0 +1,2 @@
+pyansys-sphinx-theme
+numpydoc

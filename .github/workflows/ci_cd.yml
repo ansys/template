@@ -53,6 +53,22 @@ jobs:
 
       - name: Unit testing
         run: |
-          pip install -r requirements_test.py
+          pip install -r requirements_test.txt
           cd tests  # so we're testing the install, not local
           pytest -vx
+
+  docs:
+    name: Build Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install req and build
+        run: |
+          pip install -r requirements_docs.txt
+          make -C doc html SPHINXOPTS="-W"
