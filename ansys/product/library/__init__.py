@@ -16,11 +16,13 @@ Then add the import within this module to enable:
    >>> library.add(1, 2)
 
 .. note::
-   It's best to import the version here as well so it can be
-   referenced at the library level.
+   The version should be defined here so it can be referenced at the
+   library level. It is also used by the 'flit' packaging tool.
 
 """
 
-from ansys.product.library._version import __version__
+# Nice string for the version
+__version__ = "0.1.0.dev0"
+
 from ansys.product.library.module import add
 from ansys.product.library.other_module import Complex
