@@ -47,8 +47,8 @@ jobs:
 
       - name: Create wheel
         run: |
-          pip install wheel
-          python setup.py bdist_wheel
+          pip install build
+          python -m build --wheel
 
       - name: Validate wheel
         run: |
