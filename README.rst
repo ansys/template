@@ -34,8 +34,14 @@ Alternatively, clone and install in development mode with:
 
    git clone https://github.com/pyansys/
    cd <PyAnsys-Library>
-   pip install -e .
+   pip install poetry
+   poetry install
 
+This creates a new virtual environment, which can be activated with
+
+.. code::
+
+   poetry shell
 
 Documentation
 -------------

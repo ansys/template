@@ -24,7 +24,7 @@ jobs:
 
       - name: Install style requirements
         run: |
-          pip install -r requirements_style.txt --disable-pip-version-check
+          pip install .[style] --disable-pip-version-check
 
       - name: Codespell
         run: |
@@ -47,20 +47,19 @@ jobs:
 
       - name: Create wheel
         run: |
-          pip install wheel
-          python setup.py bdist_wheel
+          pip install build
+          python -m build --wheel
 
       - name: Validate wheel
         run: |
           pip install twine
           twine check dist/*
 
-      - name: Install library
-        run: pip install dist/*
+      - name: Install library, with test extra
+        run: pip install $(echo dist/*)[test]
 
       - name: Unit testing
         run: |
-          pip install -r requirements_test.txt
           cd tests  # so we're testing the install, not local
           pytest -vx
 
@@ -82,12 +81,11 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install library
-        run: pip install .
+      - name: Install library, with docs extra
+        run: pip install .[docs]
 
       - name: Build HTML
         run: |
-          pip install -r requirements_docs.txt
           make -C doc html SPHINXOPTS="-W"
 
       - name: Build PDF Documentation
