@@ -16,13 +16,17 @@ Then add the import within this module to enable:
    >>> library.add(1, 2)
 
 .. note::
-   The version should be defined here so it can be referenced at the
-   library level. It is also used by the 'flit' packaging tool.
+   The version is obtained from the installation metadata. During development,
+   it will only update after re-executing `poetry install`.
 
 """
 
-# Nice string for the version
-__version__ = "0.1.0.dev0"
+try:
+    import importlib.metadata as importlib_metadata
+except ModuleNotFoundError:
+    import importlib_metadata
+
+__version__ = importlib_metadata.version(__name__.replace(".", "-"))
 
 from ansys.product.library.module import add
 from ansys.product.library.other_module import Complex
