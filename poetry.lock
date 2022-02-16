@@ -251,7 +251,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "pyansys-sphinx-theme"
-version = "0.2.2"
+version = "0.2.3"
 description = "PyData-based Sphinx theme from the PyAnsys community"
 category = "main"
 optional = true
@@ -557,7 +557,7 @@ test = ["pytest", "pytest-cov"]
 
 [metadata]
 lock-version = "1.1"
-python-versions = ">=3.7" # Plan on supporting only the currently supported versions of Python
+python-versions = ">=3.7"
 content-hash = "e6df33f8229ad8ac4f0a69314d0da62f77a084b70b3e32bd7182d4075ab38aca"
 
 [metadata.files]
@@ -760,7 +760,7 @@ py = [
     {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
 ]
 pyansys-sphinx-theme = [
-    {file = "pyansys-sphinx-theme-0.2.2.tar.gz", hash = "sha256:bc4139587e4020743242fd279eab419606a3e742d2ee9be1a6bd5944bb51f925"},
+    {file = "pyansys-sphinx-theme-0.2.3.tar.gz", hash = "sha256:b9251650e8b42b9d864f3d054969dcff59d4cb43d71e21109005517801b52e9b"},
 ]
 pycodestyle = [
     {file = "pycodestyle-2.7.0-py2.py3-none-any.whl", hash = "sha256:514f76d918fcc0b55c6680472f0a37970994e07bbb80725808c17089be302068"},
