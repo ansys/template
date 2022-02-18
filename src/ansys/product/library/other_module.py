@@ -227,6 +227,7 @@ class Complex:
         >>> from ansys.product import library
         >>> my_num = library.Complex(real=1, imag=1.0)
         >>> my_num.abs
+        1.4142135623730951
         """
         return (self._real**2 + self._imag**2) ** 0.5
 
