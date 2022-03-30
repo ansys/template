@@ -4,11 +4,11 @@ PyAnsys Library Template (deprecated)
 Deprecation Warning
 ===================
 
-**This repository has been deprecated in favor of `pyansys-template`_.** The
+This repository has been deprecated in favor of `ansys-templates`_. The
 new template takes advantage of a dynamic install, allows you to select the
 build system and is deeply tested.
 
-.. _pyansys-template: https://github.com/pyansys/pyansys-template
+.. _ansys-templates: https://github.com/pyansys/ansys-templates
 
 
 About
