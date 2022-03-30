@@ -46,9 +46,7 @@ With coverage.
 
 
 """
-
 import pytest
-
 from ansys.product import library
 
 # this is a fixture that simplifies reuse of common components
@@ -56,13 +54,14 @@ from ansys.product import library
 def my_complex():
     return library.Complex(1, -2)
 
+
 @pytest.fixture
 def py_complex():
     return 1 - 2j
 
 
-@pytest.mark.parametrize('a', range(1, 3))
-@pytest.mark.parametrize('b', range(1, 4))
+@pytest.mark.parametrize("a", range(1, 3))
+@pytest.mark.parametrize("b", range(1, 4))
 def test_add(a, b):
     a = 1
     b = 3

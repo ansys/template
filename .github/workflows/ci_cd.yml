@@ -12,7 +12,7 @@ on:
 
 jobs:
   style:
-    name: Style Check
+    name: Pre-commit Check
     runs-on: ubuntu-latest
 
     steps:
@@ -22,17 +22,14 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install style requirements
+      - name: Install pre-commit requirements
         run: |
-          pip install .[style] --disable-pip-version-check
+          pip install poetry
+          poetry install -E pre-commit
 
-      - name: Codespell
+      - name: Run pre-commit
         run: |
-          make codespell
-
-      - name: flake8
-        run: |
-          make flake8
+          poetry run pre-commit run --all-files || ( git status --short ; git diff ; exit 1 )
 
   main:
     name: Build and Testing
@@ -82,17 +79,19 @@ jobs:
           python-version: 3.8
 
       - name: Install library, with docs extra
-        run: pip install .[docs]
+        run: |
+          pip install poetry
+          poetry install -E docs
 
       - name: Build HTML
         run: |
-          make -C doc html SPHINXOPTS="-W"
+          poetry run make -C doc html SPHINXOPTS="-W"
 
       - name: Build PDF Documentation
         run: |
           sudo apt update
           sudo apt-get install -y texlive-latex-extra latexmk
-          make -C doc latexpdf
+          poetry run make -C doc latexpdf
 
       - name: Upload HTML Documentation
         uses: actions/upload-artifact@v2
