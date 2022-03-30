@@ -1,5 +1,18 @@
-PyAnsys Library Template
-########################
+PyAnsys Library Template (deprecated)
+#####################################
+
+Deprecation Warning
+===================
+
+**This repository has been deprecated in favor of `pyansys-template`_.** The
+new template takes advantage of a dynamic install, allows you to select the
+build system and is deeply tested.
+
+.. _pyansys-template: https://github.com/pyansys/pyansys-template
+
+
+About
+-----
 
 This repository is a template repository where you can `Create a
 repository from a template`_ and create a new PyAnsys project that
